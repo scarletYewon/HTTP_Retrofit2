@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">49.142.8.5</domain>
+        <!-- 필요한 도메인을 여기에 추가 -->
+    </domain-config>
+</network-security-config>
