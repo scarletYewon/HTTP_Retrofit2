@@ -3,6 +3,7 @@ package com.android.myapplication
 import android.hardware.camera2.CameraExtensionSession.StillCaptureLatency
 import com.google.gson.annotations.JsonAdapter
 import org.json.JSONArray
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.GET
@@ -28,4 +29,10 @@ interface ApiService {
 
     @POST("/api/body-test")
     suspend fun bodyTest(@Body data:MyRequestData): String
+
+    @GET("/user")
+    suspend fun userTest(@Query("id") id: Int): User
+
+    @POST("/user")
+    suspend fun signTest(@Body data:User): User
 }

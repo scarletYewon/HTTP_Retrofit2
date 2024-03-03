@@ -57,8 +57,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="body테스트"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_status_get"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_post_header" />
+    <Button
+        android:id="@+id/btn_status_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="유저조회"
+        app:layout_constraintBottom_toTopOf="@id/btn_status_post"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_post_body" />
+    <Button
+        android:id="@+id/btn_status_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_status_get" />
 </androidx.constraintlayout.widget.ConstraintLayout>

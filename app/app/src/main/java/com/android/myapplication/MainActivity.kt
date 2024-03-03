@@ -15,19 +15,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Retrofit 인스턴스 생성
-        val gson : Gson = GsonBuilder()
-            .setLenient()
-            .create()
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://49.142.8.5:8080/") // 실제 엔드포인트 URL로 변경해야 합니다
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-
-        // API 서비스 인스턴스 생성
-        val apiService = retrofit.create(ApiService::class.java)
+        val apiService = RetrofitClient.apiservice
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -88,6 +77,52 @@ class MainActivity : AppCompatActivity() {
                     Log.e("Response", responseData.toString())
                 } catch (e: Exception) {
                     Log.e("Error", e.message.toString())
+                }
+            }
+        }
+        findViewById<Button>(R.id.btn_status_get).setOnClickListener{
+            val id = 1
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    val responseData = apiService.userTest(id)
+                    Log.e("Response", responseData.toString())
+                    // 응답 데이터를 사용하여 작업 수행
+                } catch (e: Exception) {
+                    if (e is retrofit2.HttpException){
+                        if (e.code() == 404){
+                            val errorBody = e.response()?.errorBody()?.string()
+                            val gson = Gson()
+                            val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
+                            Log.e("404에러",errorResponse.toString())
+                        }else {
+                            Log.e("Error", e.message.toString())
+                        }
+                    } else {
+                        Log.e("Error", e.message.toString())
+                    }
+                }
+            }
+        }
+        findViewById<Button>(R.id.btn_status_post).setOnClickListener{
+            val data = User(1,"a123@naver.com","abcd1234")
+            GlobalScope.launch(Dispatchers.IO) {
+                try {
+                    val responseData = apiService.signTest(data)
+                    Log.e("Response", responseData.toString())
+                    // 응답 데이터를 사용하여 작업 수행
+                } catch (e: Exception) {
+                    if (e is retrofit2.HttpException){
+                        if (e.code() == 400){
+                            val errorBody = e.response()?.errorBody()?.string()
+                            val gson = Gson()
+                            val errorResponse : ExceptionDto? = gson.fromJson(errorBody, ExceptionDto::class.java)
+                            Log.e("400에러",errorResponse.toString())
+                        }else {
+                            Log.e("Error", e.message.toString())
+                        }
+                    } else {
+                        Log.e("Error", e.message.toString())
+                    }
                 }
             }
         }
