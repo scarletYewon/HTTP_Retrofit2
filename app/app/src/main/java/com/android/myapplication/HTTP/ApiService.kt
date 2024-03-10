@@ -1,14 +1,8 @@
-package com.android.myapplication
+package com.android.myapplication.HTTP
 
-import android.hardware.camera2.CameraExtensionSession.StillCaptureLatency
-import com.google.gson.annotations.JsonAdapter
-import org.json.JSONArray
-import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.Field
 import retrofit2.http.GET
 import retrofit2.http.Header
-import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -28,11 +22,11 @@ interface ApiService {
     suspend fun headerTest(@Header("token") token:String): String
 
     @POST("/api/body-test")
-    suspend fun bodyTest(@Body data:MyRequestData): String
+    suspend fun bodyTest(@Body data: MyRequestData): String
 
     @GET("/user")
     suspend fun userTest(@Query("id") id: Int): User
 
     @POST("/user")
-    suspend fun signTest(@Body data:User): User
+    suspend fun signTest(@Body data: User): User
 }

@@ -1,4 +1,4 @@
-package com.android.myapplication
+package com.android.myapplication.HTTP
 
 data class ExceptionDto(
     val errorCode: String,

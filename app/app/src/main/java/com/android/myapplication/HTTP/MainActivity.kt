@@ -1,17 +1,17 @@
-package com.android.myapplication
+package com.android.myapplication.HTTP
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
+import android.content.Intent
+import com.android.myapplication.JWT.MainActivity2
+import com.android.myapplication.R
+import com.android.myapplication.RetrofitClient
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,6 +125,12 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+
+        findViewById<Button>(R.id.btn_jwt).setOnClickListener{
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
