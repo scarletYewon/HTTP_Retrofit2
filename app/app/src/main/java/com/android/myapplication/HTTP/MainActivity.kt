@@ -12,8 +12,11 @@ import android.content.Intent
 import com.android.myapplication.JWT.MainActivity2
 import com.android.myapplication.R
 import com.android.myapplication.RetrofitClient
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 class MainActivity : AppCompatActivity() {
+    // 의도적으로 Gloval Scope를 쓴 것을 명시해줘야함
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val apiService = RetrofitClient.apiservice
